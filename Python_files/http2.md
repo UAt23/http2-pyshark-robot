@@ -1,5 +1,4 @@
-
-TLS ALPN 
+http2 standard: https://www.rfc-editor.org/rfc/rfc7540#section-3.1 
 
 STEPS:
 
