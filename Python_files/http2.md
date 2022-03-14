@@ -30,7 +30,10 @@ Frames:
         endpoint receives a SETTINGS frame whose stream identifier field is
         anything other than 0x0, the endpoint MUST respond with a connection
         error of type PROTOCOL_ERROR.
+    
+    GO_AWAY:
 
+        - The GOAWAY frame (type=0x7) is used to initiate shutdown of a connection or to signal serious error conditions. GOAWAY allows an endpoint to gracefully stop accepting new streams while still finishing processing of previously established streams. This enables administrative actions, like server maintenance.
 
 
 Flow Control:
