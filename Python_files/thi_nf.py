@@ -25,8 +25,8 @@ def get_packet_details(packet):
     destination_address = packet.ip.dst
     destination_port = packet[packet.transport_layer].dstport
     packet_time = packet.sniff_time
-    return {'Packet Timestamp': packet_time,
-           'Stream ID': stream_id, 
+    return {'Stream ID': stream_id, 
+           'Packet Timestamp': packet_time,
            'Protocol type': protocol, 
            'Source address': source_address, 
            'Source port': source_port, 
@@ -59,5 +59,6 @@ def capture_shark(pcap_file_path):
         if results is not None:
             pkt[packet_i] = results
     print(pkt)
+    capture.close()
     return print('DONE')
 capture_shark(pcap_file_path)
