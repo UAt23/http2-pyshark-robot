@@ -46,7 +46,7 @@ def get_http2_respond_packets(packet):
         return results
 
 def capture_shark(pcap_file_path):
-    
+    pkt = []
     # Sniff from interface
     capture = pyshark.FileCapture(pcap_file_path, display_filter='tcp.port == 8006', decode_as={'tcp.port==8006':'http2'})  
     # packets = [pkt for pkt in capture._packets]
@@ -54,6 +54,7 @@ def capture_shark(pcap_file_path):
     for packet in capture:
         results = get_http2_respond_packets(packet)
         if results is not None:
+            pkt.append(results)
             print(results)
     return print('DONE')
 capture_shark(pcap_file_path)
