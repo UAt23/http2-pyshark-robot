@@ -17,6 +17,7 @@ def get_packet_details(packet):
                 if json_object['nfInstances'][0]['nfStatus'] =='REGISTERED':
                     # print('REGISTERED')
                     registered = True
+                    nf_type =  json_object['nfInstances'][0]['nfType']
 
     protocol = packet.transport_layer
     stream_id = packet.http2.streamId
@@ -26,12 +27,13 @@ def get_packet_details(packet):
     destination_port = packet[packet.transport_layer].dstport
     packet_time = packet.sniff_time
     return {'Stream ID': stream_id, 
+           'Registered' : registered, 
+           'NF Type' : nf_type, 
            'Packet Timestamp': packet_time,
            'Protocol type': protocol, 
            'Source address': source_address, 
            'Source port': source_port, 
            'Destination address': destination_address,
-           'Registered' : registered, 
            'Destination port' : destination_port}
 
 def get_http2_request_packets(packet):
