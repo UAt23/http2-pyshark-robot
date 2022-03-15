@@ -2,6 +2,10 @@
 Documentation     Template robot main suite.
 Library           http2_nf.py  
 
+*** Variables ***
+${REGISTRATION}    FALSE 
+
+
 *** Tasks ***
-Minimal task
-    Log    Done.
+Capture http2 packets
+    
