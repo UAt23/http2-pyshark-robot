@@ -26,7 +26,7 @@ def get_packet_details(packet):
     destination_port = packet[packet.transport_layer].dstport
     packet_time = packet.sniff_time
     return f'Packet Timestamp: {packet_time}' \
-           f'\nHighhest layer: {highest_layer}' \
+           f'\nHighhest layer: {stream_id}' \
            f'\nProtocol type: {protocol}' \
            f'\nSource address: {source_address}' \
            f'\nSource port: {source_port}' \
