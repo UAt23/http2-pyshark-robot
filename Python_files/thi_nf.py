@@ -25,14 +25,14 @@ def get_packet_details(packet):
     destination_address = packet.ip.dst
     destination_port = packet[packet.transport_layer].dstport
     packet_time = packet.sniff_time
-    return f'Packet Timestamp: {packet_time}' \
-           f'\nHighhest layer: {stream_id}' \
-           f'\nProtocol type: {protocol}' \
-           f'\nSource address: {source_address}' \
-           f'\nSource port: {source_port}' \
-           f'\nDestination address: {destination_address}' \
-           f'\nNF status: {registered}' \
-           f'\nDestination port: {destination_port}\n'
+    return {'Packet Timestamp': packet_time,
+           'Stream ID': stream_id, 
+           'Protocol type': protocol, 
+           'Source address': source_address, 
+           'Source port': source_port, 
+           'Destination address': destination_address,
+           'Registered' : registered, 
+           'Destination port' : destination_port}
 
 def get_http2_request_packets(packet):
     
@@ -46,14 +46,18 @@ def get_http2_respond_packets(packet):
         return results
 
 def capture_shark(pcap_file_path):
+    pkt = {}
     
     # Sniff from interface
     capture = pyshark.FileCapture(pcap_file_path, display_filter='tcp.port == 8006', decode_as={'tcp.port==8006':'http2'})  
     # packets = [pkt for pkt in capture._packets]
     # print(len(list(capture)))
     for packet in capture:
+        
         results = get_http2_respond_packets(packet)
+        packet_i = 'Packet_{}'.format(packet.number)
         if results is not None:
-            print(results)
+            pkt[packet_i] = results
+    print(pkt)
     return print('DONE')
 capture_shark(pcap_file_path)
