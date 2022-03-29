@@ -4,7 +4,9 @@ STEPS:
 
     -The first step of establishing a TLS connection is to exchange what are called “hello messages” that allow the client and server to “agree on algorithms, exchange random values, and check for session resumption”. With ALPN, the client sends a list of supported protocols to the server as part of the client’s hello message, and the server selects a protocol from this list and sends it back to the client as part of the server’s hello message.
 
-    -In addition to agreeing on h2 is the protocol for the TLS connection, the client and the server must send a pre-defined “connection preface” as a final confirmation of the protocol, and to establish any initial settings for the h2 connection. The client begins by sending the string PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n as the first data of the TLS connection. The client must follow this string with an h2 SETTINGS frame. The server responds with a SETTINGS frame. From this point forward, a valid HTTP/2 connection is established. (Probably the magic part)
+    -In addition to agreeing on h2 is the protocol for the TLS connection, the client and the server must send a pre-defined “connection preface” as a final confirmation of the protocol, and to establish any initial settings for the h2 connection. The client begins by sending the string PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n as the first data of the TLS connection. The client must follow this string with an h2 SETTINGS frame. The server responds with a SETTINGS frame. From this point forward, a valid HTTP/2 connection is established. 
+
+    -The Magic is a not a frame but a special set of bytes, resembling an HTTP/1.1 message. It is sent at the beginning of all HTTP/2 connections to allow HTTP/1.1 servers to reject the connection elegantly with an HTTP/1.1 response so the client knows to revert back to HTTP/1.1.
 
     -In summary, establishing an HTTP/2 connection requires:
 
@@ -50,3 +52,4 @@ Flow Control:
     ensures that important control frames are not blocked by flow
     control.
 
+ ./tshark.exe  -R "http2" -Y http2.header.value -d tcp.port==8006,http2 -r D:/WORK/robot/STOAMF1Pcap17001.pcap -2

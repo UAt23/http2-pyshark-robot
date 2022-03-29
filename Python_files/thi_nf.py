@@ -53,7 +53,7 @@ def capture_shark(pcap_file_path):
     # Sniff from interface
     capture = pyshark.FileCapture(pcap_file_path, display_filter='tcp.port == 8006', decode_as={'tcp.port==8006':'http2'})  
     # packets = [pkt for pkt in capture._packets]
-    # print(len(list(capture)))
+    print(len(list(capture)))
     for packet in capture:
         
         results = get_http2_respond_packets(packet)
@@ -63,4 +63,6 @@ def capture_shark(pcap_file_path):
     print(pkt)
     capture.close()
     return print('DONE')
+
+    
 capture_shark(pcap_file_path)

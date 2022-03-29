@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.3 (Python 3.7.5 on win32)" generated="20220318 17:22:06.166" rpa="true" schemaversion="2">
+<suite id="s1" name="Tasks" source="d:\WORK\repository(http2-pyshark-robot)\http2-pyshark-robot\Python_files\tests\tasks.robot">
+<test id="s1-t1" name="Check if registered">
+<kw name="Capture Shark" library="nf_instances">
+<arg>${PATH}</arg>
+<arg>1</arg>
+<msg timestamp="20220318 17:22:16.940" level="INFO">2
+DONE</msg>
+<status status="PASS" starttime="20220318 17:22:07.510" endtime="20220318 17:22:16.958"/>
+</kw>
+<status status="PASS" starttime="20220318 17:22:07.508" endtime="20220318 17:22:16.960"/>
+</test>
+<doc>Template robot main suite.</doc>
+<status status="PASS" starttime="20220318 17:22:06.185" endtime="20220318 17:22:16.963"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tasks">Tasks</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
